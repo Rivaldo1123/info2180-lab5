@@ -16,7 +16,7 @@ $countryQuery = $conn->query($sqlCountry);
 
 $citiesquery= $conn->query("SELECT cities.name, cities.district, cities.population FROM countries join cities on cities.country_code = countries.code WHERE countries.name LIKE '%$country'"); 
 
-$data = $countryQuery->fetchAll(PDO::FETCH_ASSOC);
+$country = $countryQuery->fetchAll(PDO::FETCH_ASSOC);
 $cities = $citiesquery->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -62,10 +62,10 @@ if (isset($_GET['context'])) {
   echo '<th> Population</th>';
   echo '<thead/>';
   echo '</tr>';
-  foreach ($data as $row) {
+  foreach ($country as $row) {
     echo '<tbody>' . '<tr>';
     echo '<td>' . $row['name'] . '</td>';
-    echo '<td>' . $row['continent'] . '</td>';
+    echo '<td>' . $row['continent']. '</td>';
     echo '<td>' . $row['independence_year'] . '</td>';
     echo '<td>' . $row['head_of_state'] . '</td>';
     echo '<td>' . $row['population'] . '</td>';
